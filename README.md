@@ -1,5 +1,7 @@
 # Настройка проекта
 
+## Настройка переменной окружения в Windows
+
 Для корректной работы проекта используется системная переменная окружения `VIVADO_FOLDER`.
 
 Переменная `VIVADO_FOLDER` должна указывать на каталог, в котором расположен репозиторий `Neural_Processor`, а не на сам каталог проекта.
@@ -15,44 +17,6 @@ D:\Projects\Vivado_Projects\Neural_Processor
 ```text
 VIVADO_FOLDER=D:\Projects\Vivado_Projects
 ```
-
-## Настройка переменной окружения в Windows
-
-Для постоянного создания переменной окружения можно использовать команду:
-
-```powershell
-setx VIVADO_FOLDER "D:\Projects\Vivado_Projects"
-```
-
-После создания или изменения переменной рекомендуется перезапустить ModelSim, VS Code и другие приложения, в которых она используется.
-
-Для установки переменной только в текущем сеансе PowerShell:
-
-```powershell
-$env:VIVADO_FOLDER = "D:\Projects\Vivado_Projects"
-```
-
-Проверить текущее значение можно командой:
-
-```powershell
-echo $env:VIVADO_FOLDER
-```
-
-Переменная `VIVADO_FOLDER` используется Tcl-скриптами ModelSim и Python-скриптами для поиска файлов проекта.
-
-Пример запуска полной симуляции верхнего уровня:
-
-```tcl
-source $env(VIVADO_FOLDER)/Neural_Processor/modelsim/top_tb.tcl
-```
-
-Пример запуска симуляции непосредственно нейронной сети:
-
-```tcl
-source $env(VIVADO_FOLDER)/Neural_Processor/modelsim/neuron_net_tb.tcl
-```
-
-Путь к проекту также передаётся в RTL-модель через параметр `PR_DIR` и используется для загрузки файлов весов и смещений нейронной сети.
 
 ---
 
